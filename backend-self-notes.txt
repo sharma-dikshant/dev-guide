@@ -1,0 +1,86 @@
+=============================================================================================================================
+							API Development: 
+## API features development:
+		1. Filters
+		2. Range Filtering
+		3. Sorting 
+		4. Field Limitation
+		5. Pagination
+		6. Alias Route
+
+1. Filters:-
+	filtering based on : category, tags, author, title.
+	new RegExp("pattern", option);
+	$in operator : to get doc containing any of value in a given array
+	
+	mongoose operator: Blog.find( filter object )
+
+3. Sorting:- 
+	sorting based on latest created, and if two docs are created on same time then based on latest updated
+	Blog.sort("createdAt updatedAt")
+
+	mongoose operator: Blog.sort(" field_1 -field_2 ")
+
+4. Field Limitation:-
+	selecting only some specified fields only
+	
+	mongoose operator: Blog.select("field_1 field_2")
+
+5. Pagination:- 
+	to limit the amount of data sent back
+	
+	mongoose operator: Blog.skip(<no_of_doc_to_skip>).limit(<no_of_doc_to_sent>)
+
+
+
+
+## API refactoring:
+	refactor the api features like filter, sort, limiting fields, pagination, logic into a class with these as member functions.
+
+
+
+
+## Error Handling :-
+	Type of Errors:
+		1. Operational: Error which are due to client.
+			a) Unhandled Routes
+			b) errors in Async Functions
+			c) 404 Not Found error
+		2. Programming Error: Error which are due to developer's mistakes.
+
+	
+	Steps To Built Better Error Handling :-
+	1> Handled All the unhandled Routes
+	2> Use Global Error Handling Middleware.
+	*> Create Custom Class for Errors.
+	3> Catch Error in Async Functions.
+	4> create 404 Not Found errors.
+	5> Separately design errors for Prod. and Dev.
+	6> Handled other errors like invalid database ID, and other error related to accessing data for database.
+		a) Invalid DatabaseID
+		b) Duplicate Fields
+		c) Mongoose Validation Error
+		d) Any connection Error
+		e) authentication error
+	7> Handled all unhandled Errors.
+		a> unhandledRejection
+		b> uncaughtExceptions
+
+## Authentication, authorization and Security :-
+	1. Password Management.
+		0> Password Validation for minLength.
+		1> Password Confirm Validation.
+		2> Password Hashing.
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	

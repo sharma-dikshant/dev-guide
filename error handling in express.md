@@ -135,3 +135,47 @@ process.on('unhandledRejection', err => {
 });
 
 ```
+
+### 4. Handling Mongoose errors:
+**Common Mongoose Errors to Handle:**  
+- CastError:   
+    - Error type: Cast Error
+    - Mongoose Error name: `CastError`
+    - Example: Invalid mongodb objectId
+- Duplicate Key Error:  
+    - Error type: Duplicate Key
+    - Mongoose Error name: `MongoError` code `11000`
+    - Example: Unique field conflict
+- Validation Error:
+    - Error type: Validation Error
+    - Mongoose Error name: `ValidationError`
+    - Example: Schema Validation failed
+
+```javascript
+//.....
+    if (err.name === "CastError") error = handleCastErrorDB(err);
+    if (err.code === 11000) error = handleDuplicateFieldsDB(err);
+    if (err.name === "ValidationError") error = handleValidationErrorDB(err);
+
+//.....
+    const handleCastErrorDB = (err) => {
+      const message = `Invalid ${err.path}: ${err.value}`;
+      return new AppError(message, 400);
+    };
+
+    const handleDuplicateFieldsDB = (err) => {
+      const field = Object.keys(err.keyValue)[0];
+      const value = err.keyValue[field];
+      const message = `Duplicate field value: '${value}'. Please use another value for '${field}'.`;
+      return new AppError(message, 400);
+    };
+
+    const handleValidationErrorDB = (err) => {
+      const errors = Object.values(err.errors).map((el) => el.message);
+      const message = `Invalid input data: ${errors.join(". ")}`;
+      return new AppError(message, 400);
+    };
+//......
+
+```
+    

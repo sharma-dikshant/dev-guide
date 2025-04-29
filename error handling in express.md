@@ -1,5 +1,23 @@
 # Error Handling in Express
 
+## HTTP Status Code:
+ - **1xx** : Informational
+ - **2xx** : Success
+ - **3xx** : Redirection
+ - **4xx** : Client Error
+ - **5xx** : Server Error
+
+ ### Important HTTP status code:
+ - **200** OK → Success GET/POST response
+ - **201** Created → Success POST (new resource created)
+ - **204** No Content → Success DELETE (no response needed)
+ - **400** Bad Request → Validation failed (wrong user input)
+ - **401** Unauthorized → Not logged in
+ - **403** Forbidden → Logged in but no permission
+ - **404** Not Found → Resource or URL not found
+ - **409** Conflict → Duplicate entry
+ - **500** Internal Server Error → Bug in your code or server failure
+ 
 ## Types of Errors:
 
 - **Operational Error:** Errors that are expected like validation errors, etc.
@@ -136,7 +154,7 @@ process.on('unhandledRejection', err => {
 
 ```
 
-### 4. Handling Mongoose errors:
+### 7. Handling Mongoose errors:
 **Common Mongoose Errors to Handle:**  
 - CastError:   
     - Error type: Cast Error
